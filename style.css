@@ -1,0 +1,151 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #e9d8a6;
+    color: #023047;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #94d2bd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#digital-clock {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-top: 10px;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.schedule-section {
+    text-align: center;
+    background: #94d2bd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+ .calendar-section {
+    text-align: center;
+    background: #94d2bd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.attendance-section {
+    text-align: center;
+    background: #94d2bd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.class-card {
+    background: #219ebc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.class-card.expired {
+    opacity: 0.6;
+    border-color: #95a5a6;
+}
+
+.countdown {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.calendar-header button {
+    background: none;
+    border: 1px solid #9e2a2b;
+    color: #9e2a2b;
+    padding: 5px 10px;
+}
+
+.calendar-header button:hover {
+    background: #9e2a2b;
+    color: #9e2a2b;
+}
+
+.current-day {
+    background: #9e2a2b !important;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-day {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.attendance-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+input[type="number"] {
+    width: 60px;
+    padding: 5px;
+}
+
+#add {
+    background: #9e2a2b;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#add:hover {
+    background: #2980b9;
+}

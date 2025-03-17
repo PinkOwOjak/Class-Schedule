@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Routine Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Class Routine Tracker</h1>
+            <div id="digital-clock"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="schedule-section">
+                <h2>Weekly Schedule</h2>
+                <div id="class-list"></div>
+            </div>
+
+            <div class="right-sidebar">
+                <div class="calendar-section">
+                    <h2>Calendar & Reminders</h2>
+                    <div id="calendar-header"></div>
+                    <div id="calendar"></div>
+                    <div id="reminder-input">
+                        <input type="date" id="reminder-date">
+                        <input type="text" id="reminder-text" placeholder="Add reminder...">
+                        <button id="add" onclick="addReminder()">Add</button>
+                    </div>
+                    <div id="reminders-list"></div>
+                </div>
+
+                <div class="attendance-section">
+                    <h2>Attendance Tracker</h2>
+                    <div id="attendance-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
