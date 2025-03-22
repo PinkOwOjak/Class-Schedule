@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Class Routine Tracker</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>📚 Class Routine Tracker</h1>
+            <div>
+                <h1 id="titlee">📚 Class Routine Tracker</h1>
+                <button id="toggle-theme" class="theme-toggle">🌙</button>
+            </div>
             <div id="digital-clock"></div>
+            (GMT+6)
         </div>
 
         <div class="main-content">
@@ -25,16 +29,11 @@
                     <div id="calendar-header"></div>
                     <div id="calendar"></div>
                     <div id="reminder-input">
-                        <input type="date" id="reminder-date">
-                        <input type="text" id="reminder-text" placeholder="Add reminder...">
+                        <input type="date" id="reminder-date" />
+                        <input type="text" id="reminder-text" placeholder="Add reminder..." />
                         <button id="add" onclick="addReminder()">Add</button>
                     </div>
                     <div id="reminders-list"></div>
-                </div>
-
-                <div class="attendance-section">
-                    <h2>Attendance Tracker</h2>
-                    <div id="attendance-list"></div>
                 </div>
             </div>
         </div>
