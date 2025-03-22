@@ -76,7 +76,7 @@ body {
 }
 
 .countdown {
-    color: #e74c3c;
+    color: #4dff01;
     font-weight: bold;
     margin-top: 8px;
 }
@@ -148,4 +148,76 @@ input[type="number"] {
 
 #add:hover {
     background: #2980b9;
+}
+
+.theme-toggle {
+    text-align: right;
+    background: transparent;
+    border: 2px solid #023047;
+    color: #023047;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.theme-toggle:hover {
+    background: #023047;
+    color: #fff;
+}
+
+body.dark {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+body.dark .header,
+body.dark .schedule-section,
+body.dark .calendar-section {
+    background: #333;
+    color: #f0f0f0;
+}
+body.dark .class-card {
+    background: #444;
+    border-color: #666;
+}
+body.dark .calendar-day {
+    background: #555;
+    color: #fff;
+}
+body.dark .current-day {
+    background: #9e2a2b;
+    color: white;
+}
+
+body, .class-card, .calendar-day, .header, .schedule-section, .calendar-section {
+    transition: background 0.4s, color 0.4s, border-color 0.4s;
+}
+
+
+.class-card.animate {
+    animation: fadeSlideIn 0.5s ease-in-out;
+}
+
+
+@media (max-width: 768px) {
+    .main-content {
+        display: block;
+    }
+
+    .right-sidebar {
+        margin-top: 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #digital-clock {
+        font-size: 1.5em;
+    }
+
+    .theme-toggle {
+        font-size: 1.5em;
+    }
 }
