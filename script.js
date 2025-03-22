@@ -5,35 +5,31 @@ const classes = [
         time: "15:10-16:40",
         days: ["Sunday", "Tuesday"],
         room: "Online",
-        attendance: 0
     },
     {
         code: "PPHS105",
         time: "15:10-16:40",
         days: ["Monday", "Thursday"],
         room: "AB3 1002-Fub 503",
-        attendance: 0
     },
     {
         code: "PPHS106",
         time: "08:30-10:10",
         days: ["Monday", "Wednesday"],
         room: "AB3-901/601",
-        attendance: 0
     },
     {
         code: "PPHS202",
         time: "10:10-11:40",
         days: ["Monday", "Thursday"],
         room: "107",
-        attendance: 0
     }
 ];
 
 let reminders = {};
 let currentViewDate = new Date();
 function updateTime() {
-    const options = { timeZone: 'Asia/Dhaka', hour12: false, 
+    const options = { timeZone: 'Asia/Dhaka', hour12: true, 
         hour: 'numeric', minute: 'numeric', second: 'numeric' };
     const now = new Date().toLocaleTimeString('en-US', options);
     document.getElementById('digital-clock').textContent = now;
@@ -63,7 +59,8 @@ function getNextClassTime(cls) {
 function updateClassDisplays() {
     const classList = document.getElementById('class-list');
     classList.innerHTML = '';
-    
+    let delay = 0;
+
   
     const upcomingClasses = classes.map(cls => {
         const nextClass = getNextClassTime(cls);
@@ -76,20 +73,22 @@ function updateClassDisplays() {
     upcomingClasses.forEach(({ cls, nextClass, diff }) => {
         const classCard = document.createElement('div');
         classCard.className = 'class-card';
-        
+        classCard.style.animationDelay = `${delay}s`;
+        delay += 0.1;
+    
         classCard.innerHTML = `
             <h3>${cls.code} (${cls.time})</h3>
             <p>Days: ${cls.days.join(', ')} | Room: ${cls.room}</p>
             <div class="countdown">${formatCountdown(diff)}</div>
-            <div class="attendance">
-                Attendance: <input type="number" min="0" max="100" 
-                value="${cls.attendance}" onchange="updateAttendance('${cls.code}', this.value)">
-                %
-            </div>
         `;
-        
-        classList.appendChild(classCard);
+    
+        classCard.classList.remove('animate');
+void classCard.offsetWidth;
+classCard.classList.add('animate');
+classList.appendChild(classCard);
+
     });
+    
 }
 
 function formatCountdown(ms) {
@@ -99,18 +98,10 @@ function formatCountdown(ms) {
     const seconds = Math.floor((ms % (1000 * 60)) / 1000);
     return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
-
-// Attendance Tracking
-function updateAttendance(code, value) {
-    const cls = classes.find(c => c.code === code);
-    if(cls) cls.attendance = parseInt(value);
-}
-
 function initCalendar() {
     const calendar = document.getElementById('calendar');
     calendar.innerHTML = '';
-    
-    // Calendar Header
+
     const monthYear = currentViewDate.toLocaleString('default', { month: 'long', year: 'numeric' });
     document.getElementById('calendar-header').innerHTML = `
         <button onclick="changeMonth(-1)">←</button>
@@ -118,20 +109,16 @@ function initCalendar() {
         <button onclick="changeMonth(1)">→</button>
     `;
 
-    // Get today's date for comparison
     const today = new Date();
-    
-    // Create calendar days
+
     const firstDay = new Date(currentViewDate.getFullYear(), currentViewDate.getMonth(), 1);
     const lastDay = new Date(currentViewDate.getFullYear(), currentViewDate.getMonth() + 1, 0);
     const daysInMonth = lastDay.getDate();
-    
-    // Add empty cells for days from previous month
+
     for(let i = 0; i < firstDay.getDay(); i++) {
         calendar.appendChild(createCalendarDay(''));
     }
 
-    // Create actual days of the month
     for(let i = 1; i <= daysInMonth; i++) {
         const day = createCalendarDay(i);
         if(currentViewDate.getMonth() === today.getMonth() && 
@@ -185,4 +172,25 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTime();
     initCalendar();
     setInterval(updateClassDisplays, 1000);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateTime();
+    setInterval(updateClassDisplays, 1000);
+
+    initCalendar();
+
+    const toggleBtn = document.getElementById('toggle-theme');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        const isDark = document.body.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        toggleBtn.textContent = isDark ? '☀️' : '🌙';
+    });
 });
